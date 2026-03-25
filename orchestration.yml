@@ -1,0 +1,4 @@
+type: dbt
+name: netsuite_adapter
+dagster_group: netsuite_adapter
+description: "Netsuite Adapter"

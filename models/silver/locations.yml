@@ -1,0 +1,50 @@
+
+version: 2
+
+models:
+  - name: locations
+    description: "Dimension table for NetSuite locations in the Silver layer, including hierarchy, type, and geolocation details."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: location_id
+        description: "Unique identifier for the location record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: parent
+        description: "Identifier for the parent location in the hierarchy."
+        data_type: number
+      - name: subsidiary_id
+        description: "Identifier for the subsidiary associated with the location."
+        data_type: number
+        tests:
+          - not_null
+      - name: location_type
+        description: "Identifier for the type of location (e.g., warehouse, store)."
+        data_type: number
+      - name: location_full_name
+        description: "Full hierarchical name of the location."
+        data_type: varchar
+      - name: location_name
+        description: "Short name of the location."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the location is inactive."
+        data_type: boolean
+      - name: latitude
+        description: "Latitude coordinate of the location."
+        data_type: varchar
+      - name: longitude
+        description: "Longitude coordinate of the location."
+        data_type: varchar
+
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

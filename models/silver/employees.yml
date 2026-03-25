@@ -1,0 +1,73 @@
+
+version: 2
+
+models:
+  - name: employees
+    description: "Dimension table for NetSuite employees in the Silver layer, including personal details, organizational hierarchy, and audit metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: employee_id
+        description: "Unique identifier for the employee record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: class_id
+        description: "Identifier for the class associated with the employee."
+        data_type: number
+      - name: currency
+        description: "Identifier for the currency associated with the employee."
+        data_type: number
+        tests:
+          - not_null
+      - name: department_id
+        description: "Identifier for the department the employee belongs to."
+        data_type: number
+
+      - name: location_id
+        description: "Identifier for the location where the employee is based."
+        data_type: number
+
+      - name: employee_type_id
+        description: "Identifier for the employee type (e.g., full-time, contractor)."
+        data_type: number
+      - name: subsidiary
+        description: "Identifier for the subsidiary associated with the employee."
+        data_type: number
+        tests:
+          - not_null
+      - name: entity_id
+        description: "Entity identifier linked to the employee record."
+        data_type: varchar
+        tests:
+          - not_null
+      - name: account_number
+        description: "Account number associated with the employee (if applicable)."
+        data_type: varchar
+      - name: email
+        description: "Email address of the employee."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the employee is inactive."
+        data_type: boolean
+      - name: job_description
+        description: "Job description or role details for the employee."
+        data_type: varchar
+      - name: employee_status_id
+        description: "Identifier for the employee's status (e.g., active, terminated)."
+        data_type: varchar
+      - name: title
+        description: "Title or designation of the employee."
+        data_type: varchar
+      - name: date_created
+        description: "Date when the employee record was created."
+        data_type: timestamp_ntz
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

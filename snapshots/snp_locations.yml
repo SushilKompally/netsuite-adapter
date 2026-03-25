@@ -1,0 +1,46 @@
+
+version: 2
+
+snapshots:
+  - name: snp_locations
+    description: "Snapshot table for locations."
+    columns:
+      - name: location_id
+        description: "Primary key for the location."
+        data_type: number
+
+      - name: location_name
+        description: "Name of the location."
+        data_type: varchar
+
+      - name: location_full_name
+        description: "Full name of the location including hierarchy."
+        data_type: varchar
+
+      - name: is_inactive
+        description: "Indicates if the location is inactive."
+        data_type: boolean
+
+      - name: last_modified_date
+        description: "Last modified timestamp for the location record."
+        data_type: timestamp_tz
+
+      - name: latitude
+        description: "Latitude coordinate of the location."
+        data_type: integer
+
+      - name: longitude
+        description: "Longitude coordinate of the location."
+        data_type: integer
+
+      - name: location_type
+        description: "Type of the location."
+        data_type: varchar
+
+      - name: parent
+        description: "Parent location ID."
+        data_type: number
+
+      - name: subsidiary_id
+        description: "Subsidiary associated with the location."
+        data_type: number

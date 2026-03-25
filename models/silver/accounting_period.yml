@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: accounting_period
+    description: "Dimension table for accounting periods, including start/end dates, status, and metadata for financial reporting."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: posting_period_id
+        description: "Unique identifier for the accounting posting period."
+        data_type: number
+        tests:
+          - not_null
+      - name: closed_on_date
+        description: "Date when the accounting period was officially closed."
+        data_type: date
+      - name: last_modified_date
+        description: "Timestamp of the last update in the source system for this period."
+        data_type: timestamp_ntz
+        tests:
+          - not_null
+      - name: end_date
+        description: "End date of the accounting period."
+        data_type: date
+      - name: start_date
+        description: "Start date of the accounting period."
+        data_type: date
+      - name: period_name
+        description: "Full descriptive name of the accounting period (e.g., 'Jan 2025')."
+        data_type: varchar
+      - name: year
+        description: "Fiscal year associated with the accounting period."
+        data_type: number
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

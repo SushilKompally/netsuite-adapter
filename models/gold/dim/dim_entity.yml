@@ -1,0 +1,78 @@
+
+version: 2
+
+models:
+  - name: dim_entity
+    description: "Dimension table for entities including customers, vendors, and partners."
+    columns:
+      - name: entity_id
+        description: "Primary key for the entity."
+        data_type: varchar
+
+      - name: contact_id
+        description: "Associated contact ID for the entity."
+        data_type: integer
+
+      - name: customer_id
+        description: "Customer identifier linked to the entity."
+        data_type: integer
+
+      - name: date_created
+        description: "Date when the entity record was created."
+        data_type: timestamp_ntz
+
+      - name: email
+        description: "Email address of the entity."
+        data_type: varchar
+
+      - name: employee_id
+        description: "Employee ID associated with the entity."
+        data_type: integer
+
+      - name: entity_title
+        description: "Title or designation of the entity."
+        data_type: varchar
+
+      - name: first_name
+        description: "First name of the entity."
+        data_type: varchar
+
+      - name: group_id
+        description: "Group identifier for the entity."
+        data_type: integer
+
+      - name: internal_entity_id
+        description: "Internal system identifier for the entity."
+        data_type: integer
+
+      - name: is_inactive
+        description: "Indicates if the entity is inactive."
+        data_type: boolean
+
+      - name: is_person
+        description: "Flag indicating if the entity is a person."
+        data_type: boolean
+
+      - name: last_modified_date
+        description: "Last modified timestamp for the entity record."
+        data_type: timestamp_ntz
+
+      - name: last_name
+        description: "Last name of the entity."
+        data_type: varchar
+
+      - name: parent_id
+        description: "Parent entity ID."
+        data_type: integer
+
+      - name: partner_id
+        description: "Partner identifier linked to the entity."
+        data_type: integer
+
+      - name: entity_type
+        description: "Type of the entity (e.g., customer, vendor, partner)."
+        data_type: varchar
+
+      - name: vendor_id
+        description: "Vendor identifier linked to the entity."
+        data_type: integer

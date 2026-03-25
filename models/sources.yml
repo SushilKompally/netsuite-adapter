@@ -1,0 +1,83 @@
+
+version: 2
+
+sources:
+  - name: netsuite_bronze
+    database: "{{ env_var('DBT_SOURCE_DATABASE','TESTTENANT_RAW') }}"
+    schema: "{{ env_var('DBT_SOURCE_SCHEMA', 'RAW_NETSUITE') }}"
+    tables:
+      - name: accountingperiod
+        identifier: accountingperiod
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: account
+        identifier: account
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: classification
+        identifier: CLASSIFICATION
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: consolidatedexchangerate
+        identifier: consolidatedexchangerate
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: currency
+        identifier: currency
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: currencyrate
+        identifier: CURRENCYRATE
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: department
+        identifier: DEPARTMENT
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: employee
+        identifier: EMPLOYEE
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: entity
+        identifier: ENTITY
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: item
+        identifier: ITEM
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: location
+        identifier: LOCATION
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: subsidiary
+        identifier: subsidiary
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: transactionaccountingline
+        identifier: TRANSACTIONACCOUNTINGLINE
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: transactionline
+        identifier: TRANSACTIONLINE
+        meta:
+          dagster:
+            asset_key: ['fivetran']
+      - name: transaction
+        identifier: TRANSACTION
+        meta:
+          dagster:
+            asset_key: ['fivetran']

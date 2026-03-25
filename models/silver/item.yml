@@ -1,0 +1,122 @@
+
+version: 2
+
+models:
+  - name: item
+    description: "Dimension table for NetSuite items in the Silver layer, including product details, costing, and audit metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: item_id
+        description: "Unique identifier for the item record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: class_id
+        description: "Identifier for the class associated with the item."
+        data_type: number
+      - name: department_id
+        description: "Identifier for the department associated with the item."
+        data_type: number
+      - name: income_account
+        description: "Identifier for the income account linked to the item."
+        data_type: number
+      - name: location_id
+        description: "Identifier for the location associated with the item."
+        data_type: number
+      - name: parent_id
+        description: "Identifier for the parent item in the hierarchy."
+        data_type: number
+      - name: pricing_group
+        description: "Identifier for the pricing group associated with the item."
+        data_type: number
+      - name: sale_unit
+        description: "Identifier for the sale unit of the item."
+        data_type: number
+      - name: stock_unit
+        description: "Identifier for the stock unit of the item."
+        data_type: number
+      - name: subsidiary_id
+        description: "Identifier for the subsidiary associated with the item."
+        data_type: number
+      - name: units_type
+        description: "Identifier for the unit type of the item."
+        data_type: number
+      - name: average_cost
+        description: "Average cost of the item."
+        data_type: number
+      - name: cost
+        description: "Current cost of the item."
+        data_type: number
+      - name: costing_method
+        description: "Costing method used for the item (e.g., Average, FIFO)."
+        data_type: varchar
+      - name: last_purchase_price
+        description: "Last recorded purchase price of the item."
+        data_type: number
+      - name: maximum_quantity
+        description: "Maximum quantity allowed for the item."
+        data_type: number
+      - name: total_value
+        description: "Total value of the item based on quantity and cost."
+        data_type: number
+      - name: total_quantity_on_hand
+        description: "Total quantity of the item currently on hand."
+        data_type: number
+      - name: shipping_cost
+        description: "Shipping cost associated with the item."
+        data_type: number
+      - name: weight
+        description: "Weight of the item."
+        data_type: number
+      - name: description
+        description: "Description of the item."
+        data_type: varchar
+      - name: display_name
+        description: "Display name of the item."
+        data_type: varchar
+      - name: item_full_name
+        description: "Full hierarchical name of the item."
+        data_type: varchar
+      - name: item_name
+        description: "Short name of the item."
+        data_type: varchar
+      - name: item_type
+        description: "Type of the item (e.g., Inventory, Non-Inventory)."
+        data_type: varchar
+      - name: manufacturer
+        description: "Manufacturer of the item."
+        data_type: varchar
+      - name: store_description
+        description: "Store description for e-commerce display."
+        data_type: varchar
+      - name: store_detailed_description
+        description: "Detailed store description for e-commerce display."
+        data_type: varchar
+      - name: store_display_name
+        description: "Display name for the item in the store."
+        data_type: varchar
+      - name: sub_type
+        description: "Subtype of the item."
+        data_type: varchar
+      - name: vendor_name
+        description: "Name of the vendor associated with the item."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the item is inactive."
+        data_type: boolean
+      - name: is_ful_fillable
+        description: "Flag indicating whether the item is fulfillable."
+        data_type: boolean
+      - name: created_date
+        description: "Timestamp when the item record was created."
+        data_type: timestamp_ntz
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

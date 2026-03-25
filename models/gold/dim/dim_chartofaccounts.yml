@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: dim_chartofaccounts
+    description: "Dimension table combining account, classification, and subsidiary details."
+    columns:
+      - name: account_id
+        description: "Primary key for the account."
+        data_type: integer
+
+      - name: class_id
+        description: "Foreign key referencing classification."
+        data_type: integer
+
+      - name: currency_id
+        description: "Currency ID for the account (coalesced from account or subsidiary)."
+        data_type: integer
+
+      - name: department_id
+        description: "Department associated with the account."
+        data_type: integer
+
+      - name: location_id
+        description: "Location associated with the account."
+        data_type: integer
+
+      - name: account_parent_id
+        description: "Parent account ID."
+        data_type: integer
+
+      - name: subsidiary_id
+        description: "Subsidiary ID (coalesced from account or subsidiary)."
+        data_type: integer
+
+      - name: account_number
+        description: "Account number."
+        data_type: varchar
+
+      - name: account_description
+        description: "Description of the account."
+        data_type: varchar
+
+      - name: display_name
+        description: "Display name of the account."
+        data_type: varchar
+
+      - name: display_name_with_hierarchy
+        description: "Display name including hierarchy."
+        data_type: varchar
+
+      - name: account_name
+        description: "Name of the account."
+        data_type: varchar
+
+      - name: account_type
+        description: "Type of the account."
+        data_type: varchar
+
+      - name: subsidiary_name
+        description: "Name of the subsidiary."
+        data_type: varchar
+
+      - name: subsidiary_full_name
+        description: "Full name of the subsidiary."
+        data_type: varchar
+
+      - name: subsidiary_parent_id
+        description: "Parent ID of the subsidiary."
+        data_type: integer
+
+      - name: class_full_name
+        description: "Full name of the classification."
+        data_type: varchar
+
+      - name: class_name
+        description: "Name of the classification."
+        data_type: varchar
+
+      - name: classification_parent
+        description: "Parent classification."
+        data_type: integer
+
+      - name: last_modified_date
+        description: "Last modified timestamp for the account."
+        data_type: timestamp
+      

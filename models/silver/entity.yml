@@ -1,0 +1,72 @@
+
+version: 2
+
+models:
+  - name: entity
+    description: "Dimension table for NetSuite entities in the Silver layer, including customers, vendors, employees, and related metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: internal_entity_id
+        description: "Unique identifier for the entity record in NetSuite."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: contact_id
+        description: "Identifier for the associated contact record."
+        data_type: number
+      - name: customer_id
+        description: "Identifier for the associated customer record."
+        data_type: number
+      - name: employee_id
+        description: "Identifier for the associated employee record."
+        data_type: number
+      - name: group_id
+        description: "Identifier for the associated group record."
+        data_type: number
+      - name: parent_id
+        description: "Identifier for the parent entity in the hierarchy."
+        data_type: number
+      - name: partner_id
+        description: "Identifier for the associated partner record."
+        data_type: number
+      - name: vendor_id
+        description: "Identifier for the associated vendor record."
+        data_type: number
+      - name: email
+        description: "Email address associated with the entity."
+        data_type: varchar
+      - name: entity_id
+        description: "External or alternate identifier for the entity."
+        data_type: number
+      - name: entity_title
+        description: "Title or name of the entity."
+        data_type: varchar
+      - name: first_name
+        description: "First name of the entity (if person)."
+        data_type: varchar
+      - name: last_name
+        description: "Last name of the entity (if person)."
+        data_type: varchar
+      - name: entity_type
+        description: "Type of entity (e.g., Customer, Vendor, Employee, Partner)."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the entity is inactive."
+        data_type: boolean
+      - name: is_person
+        description: "Flag indicating whether the entity represents a person."
+        data_type: boolean
+      - name: date_created
+        description: "Timestamp when the entity record was created."
+        data_type: timestamp_ntz
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz
+

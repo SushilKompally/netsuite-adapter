@@ -1,0 +1,58 @@
+
+version: 2
+
+models:
+  - name: transaction_accounting_line
+    description: "NetSuite transaction accounting line in the Silver layer, including amounts, account details, and audit metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: transaction_line_id
+        description: "Unique identifier for the transaction accounting line."
+        data_type: varchar
+        tests:
+          - not_null
+      - name: account_id
+        description: "Identifier for the account associated with this accounting line."
+        data_type: number
+ 
+
+      - name: accounting_book_id
+        description: "Identifier for the accounting book associated with this line."
+        data_type: number
+
+      - name: transaction_id
+        description: "Identifier for the transaction header associated with this line."
+        data_type: number
+        
+      - name: account_type
+        description: "Type of account linked to this accounting line."
+        data_type: varchar
+      - name: amount
+        description: "Amount for this accounting line."
+        data_type: number(38,4)
+      - name: amount_paid
+        description: "Amount paid for this accounting line."
+        data_type: number
+      - name: amount_un_paid
+        description: "Amount unpaid for this accounting line."
+        data_type: number
+      - name: exchange_rate
+        description: "Exchange rate applied to this accounting line."
+        data_type: number(38,4)
+      - name: net_amount
+        description: "Net amount for this accounting line."
+        data_type: number
+      - name: transaction_accounting_posting_flag
+        description: "Flag indicating whether the accounting line is posted."
+        data_type: boolean
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+        tests:
+          - not_null
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

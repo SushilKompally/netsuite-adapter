@@ -1,0 +1,31 @@
+
+version: 2
+
+models:
+  - name: dim_departments
+    description: "Dimension table for departments."
+    columns:
+      - name: department_id
+        description: "Primary key for the department."
+        data_type: integer
+
+      - name: department_name
+        description: "Name of the department."
+        data_type: varchar
+
+      - name: department_full_name
+        description: "Full name of the department including hierarchy."
+        data_type: varchar
+
+      - name: is_inactive
+        description: "Indicates if the department is inactive."
+        data_type: boolean
+
+      - name: parent
+        description: "Parent department ID."
+        data_type: integer
+
+      - name: last_modified_date
+        description: "Last modified timestamp for the department."
+        data_type: timestamp_ntz
+

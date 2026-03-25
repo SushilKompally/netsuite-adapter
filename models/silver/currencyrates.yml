@@ -1,0 +1,32 @@
+
+version: 2
+
+models:
+  - name: currencyrates
+    description: "NetSuite currency rates (Silver layer)."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: currency_rate_id
+        description: "Primary key for the currency rate record."
+        data_type: number
+        tests: [not_null, unique]
+      - name: effective_date
+        description: "Effective date when the exchange rate applies."
+        data_type: date
+      - name: last_modified_date
+        description: "Timestamp of the last modification."
+        data_type: timestamp_ntz
+      - name: exchange_rate
+        description: "Exchange rate value associated with the effective date."
+        data_type: number
+      - name: externalid
+        description: "External identifier from the source system."
+        data_type: varchar
+      - name: transaction_currency
+        description: "Transaction currency identifier."
+        data_type: number
+      - name: silver_load_date
+        description: "Timestamp when the row was loaded into the Silver layer."
+        data_type: timestamp_ntz

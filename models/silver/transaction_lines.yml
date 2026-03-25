@@ -1,0 +1,135 @@
+
+version: 2
+
+models:
+  - name: transaction_lines
+    description: "NetSuite transaction lines in the Silver layer, including item details, amounts, and audit metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: transaction_line_id
+        description: "Unique identifier for the transaction line."
+        data_type: varchar
+        tests:
+          - not_null
+      - name: transaction_id
+        description: "Identifier for the transaction header associated with this line."
+        data_type: number
+
+      - name: item_id
+        description: "Identifier for the item associated with this line."
+        data_type: number
+        
+
+      - name: class_id
+        description: "Identifier for the class associated with this line."
+        data_type: number
+
+      - name: department_id
+        description: "Identifier for the department associated with this line."
+        data_type: number
+
+      - name: location_id
+        description: "Identifier for the location associated with this line."
+        data_type: number
+        
+
+      - name: subsidiary_id
+        description: "Identifier for the subsidiary associated with this line."
+        data_type: number
+
+      - name: entity_id
+        description: "Identifier for the entity (customer/vendor) associated with this line."
+        data_type: number
+        
+      - name: accounting_line_type
+        description: "Type of accounting line for this transaction line."
+        data_type: varchar
+      - name: transaction_line_type
+        description: "Type of transaction line (e.g., item, expense)."
+        data_type: varchar
+      - name: actual_ship_date
+        description: "Actual shipping date for the line item."
+        data_type: timestamp_ntz
+      - name: billed_date
+        description: "Date when the line was billed."
+        data_type: timestamp_ntz
+      - name: billing_schedule_id
+        description: "Identifier for the billing schedule associated with this line."
+        data_type: number
+      - name: close_date
+        description: "Actual closed date for the line item."
+        data_type: date
+      - name: created_from_transaction_id
+        description: "Identifier for the source transaction from which this line was created."
+        data_type: number
+      - name: revenue_account_name
+        description: "Revenue account name associated with this line."
+        data_type: number
+      - name: item_type
+        description: "Type of item associated with this line."
+        data_type: varchar
+      - name: line_lastmodified_date
+        description: "Timestamp of the last modification for this line."
+        data_type: timestamp_ntz
+        tests:
+          - not_null
+      - name: line_sequence_number_id
+        description: "Sequence number for the line within the transaction."
+        data_type: number
+      - name: payment_method_id
+        description: "Identifier for the payment method associated with this line."
+        data_type: number
+      - name: price_id
+        description: "Identifier for the price level applied to this line."
+        data_type: number
+      - name: zab_revenue_detail_id
+        description: "Identifier for ZAB revenue detail associated with this line."
+        data_type: number
+      - name: unique_key
+        description: "Unique key for the transaction line (surrogate or composite)."
+        data_type: number
+      - name: unit_id
+        description: "Identifier for the unit of measure applied to this line."
+        data_type: number
+      - name: foreign_amount
+        description: "Amount in foreign currency for this line."
+        data_type: number
+      - name: net_amount
+        description: "Net amount for this line."
+        data_type: number
+      - name: order_priority
+        description: "Priority of the order associated with this line."
+        data_type: number
+      - name: quantity
+        description: "Quantity for this line item."
+        data_type: number
+      - name: rate
+        description: "Rate applied to this line item."
+        data_type: number
+      - name: is_billable
+        description: "Flag indicating whether the line is billable."
+        data_type: boolean
+      - name: is_closed
+        description: "Flag indicating whether the line is closed."
+        data_type: boolean
+      - name: is_cogs
+        description: "Flag indicating whether the line is cost of goods sold."
+        data_type: boolean
+      - name: is_fully_shipped
+        description: "Flag indicating whether the line is fully shipped."
+        data_type: boolean
+      - name: tax_line
+        description: "Flag indicating whether the line is a tax line."
+        data_type: boolean
+      - name: transaction_discount
+        description: "Flag indicating whether the line includes a discount."
+        data_type: boolean
+      - name: memo
+        description: "Memo or description for the transaction line."
+        data_type: varchar
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

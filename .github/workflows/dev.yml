@@ -1,0 +1,81 @@
+
+name: Data Platform Package Deployment
+
+on:
+  push:
+    tags:
+      - '**' # Triggers on any tag push
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      # ----------------------------------------------------------------------
+      # 1. VARIABLE DECLARATION LOGGING
+      # ----------------------------------------------------------------------
+      - name: Define Target AWS Account
+        id: setvars
+        run: |
+          TARGET_AWS_ACCOUNT="${{ vars.AWS_ACCOUNT_ID }}"
+          echo "TARGET_AWS_ACCOUNT : $TARGET_AWS_ACCOUNT"
+      # ----------------------------------------------------------------------
+      # 2. GIT REPO
+      # ----------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # ----------------------------------------------------------------------
+      # 3. SECURITY: Assume AWS Role for Setup and Authentication
+      # ----------------------------------------------------------------------
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github-actions-iac-role-dev
+          aws-region: ${{ vars.DEFAULT_AWS_REGION }}
+      # ----------------------------------------------------------------------
+      # 3. SECURITY: Assume AWS Role for Setup and Authentication
+      # ----------------------------------------------------------------------
+      - name: Get tag name
+        id: get_tag
+        run: |
+          TAG_NAME=$(git describe --tags --abbrev=0)
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+        # Only run if a tag is found
+        if: success()
+          
+      - name: Use the tag name
+        run: |
+          echo "The tag for the current commit is: ${{ steps.get_tag.outputs.tag_name }}"
+      # ----------------------------------------------------------------------------------------------
+      # 4. Package Preperation: Create ZIP files for each package version
+      # -------------------------------------------------------------------------------------------------
+      - name: Packge Zip Creation
+        run: |
+          mkdir netsuite_adapter
+          cp -r macros netsuite_adapter
+          cp -r models netsuite_adapter
+          cp -r seeds netsuite_adapter
+          cp -r snapshots netsuite_adapter       
+          cp dbt_project.yml netsuite_adapter/dbt_project.yml   
+          cp package-lock.yml netsuite_adapter/package-lock.yml 
+          cp packages.yml netsuite_adapter/packages.yml  
+          cp orchestration.yml netsuite_adapter/orchestration.yml  
+          cp README.md netsuite_adapter/README.md          
+          tar -czvf "${{ steps.get_tag.outputs.tag_name }}.tar.gz"  netsuite_adapter
+      # ----------------------------------------------------------------------------------------------
+      # 5. Verify creation
+      # -------------------------------------------------------------------------------------------------
+      - name: Verify Creation
+        run: ls
+      # ----------------------------------------------------------------------
+      # 6. S3 Copy to Target Account
+      # ----------------------------------------------------------------------
+      - name: Copy Packages to S3
+        run: |
+          aws s3 cp "${{ steps.get_tag.outputs.tag_name }}.tar.gz"  s3://${{ vars.S3_PACKAGE_BUCKET_DEV }}/netsuite_adapter/"${{ steps.get_tag.outputs.tag_name }}.tar.gz"
+
+    

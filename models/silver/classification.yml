@@ -1,0 +1,40 @@
+
+version: 2
+
+models:
+  - name: classification
+    description: "NetSuite classification dimension in the Silver layer, including hierarchy and status."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: class_id
+        description: "Unique identifier for the classification record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+
+      - name: class_full_name
+        description: "Full hierarchical name of the classification (cleaned)."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the classification is inactive."
+        data_type: boolean
+      - name: class_name
+        description: "Short name of the classification (cleaned)."
+        data_type: varchar
+      - name: parent
+        description: "Identifier for the parent classification in the hierarchy."
+        data_type: number
+
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+        tests:
+          - not_null
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz
+

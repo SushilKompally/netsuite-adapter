@@ -1,0 +1,146 @@
+
+version: 2
+
+snapshots:
+  - name: snp_item
+    description: "Snapshot table for items including costing, classification, and inventory details."
+    columns:
+      - name: item_id
+        description: "Primary key for the item."
+        data_type: varchar
+
+      - name: average_cost
+        description: "Average cost of the item."
+        data_type: integer
+
+      - name: class_id
+        description: "Classification ID for the item."
+        data_type: number
+
+      - name: cost
+        description: "Cost of the item."
+        data_type: integer
+
+      - name: costing_method
+        description: "Costing method used for the item."
+        data_type: varchar
+
+      - name: created_date
+        description: "Date when the item record was created."
+        data_type: timestamp_tz
+
+      - name: department_id
+        description: "Department associated with the item."
+        data_type: number
+
+      - name: description
+        description: "Description of the item."
+        data_type: varchar
+
+      - name: display_name
+        description: "Display name of the item."
+        data_type: varchar
+
+      - name: item_full_name
+        description: "Full name of the item including hierarchy."
+        data_type: varchar
+
+      - name: income_account
+        description: "Income account linked to the item."
+        data_type: varchar
+
+      - name: is_ful_fillable
+        description: "Indicates if the item is fulfillable."
+        data_type: varchar
+
+      - name: is_inactive
+        description: "Indicates if the item is inactive."
+        data_type: boolean
+
+      - name: item_name
+        description: "Name of the item."
+        data_type: varchar
+
+      - name: item_type
+        description: "Type of the item."
+        data_type: varchar
+
+      - name: last_modified_date
+        description: "Last modified timestamp for the item record."
+        data_type: timestamp_tz       
+
+      - name: last_purchase_price
+        description: "Last purchase price of the item."
+        data_type: integer
+
+      - name: location_id
+        description: "Location associated with the item."
+        data_type: varchar
+
+      - name: manufacturer
+        description: "Manufacturer of the item."
+        data_type: varchar
+
+      - name: maximum_quantity
+        description: "Maximum quantity allowed for the item."
+        data_type: number
+
+      - name: parent_id
+        description: "Parent item ID."
+        data_type: varchar
+
+      - name: pricing_group
+        description: "Pricing group associated with the item."
+        data_type: varchar
+
+      - name: total_quantity_on_hand
+        description: "Total quantity of the item on hand."
+        data_type: number
+
+      - name: sale_unit
+        description: "Sale unit for the item."
+        data_type: number
+
+      - name: shipping_cost
+        description: "Shipping cost for the item."
+        data_type: integer  
+
+      - name: stock_unit
+        description: "Stock unit for the item."
+        data_type: number
+
+      - name: store_description
+        description: "Store description for the item."
+        data_type: varchar
+
+      - name: store_detailed_description
+        description: "Detailed store description for the item."
+        data_type: varchar
+
+      - name: store_display_name
+        description: "Store display name for the item."
+        data_type: varchar
+
+      - name: subsidiary_id
+        description: "Subsidiary associated with the item."
+        data_type: number
+
+      - name: sub_type
+        description: "Subtype of the item."
+        data_type: varchar
+
+      - name: total_value
+        description: "Total value of the item."
+        data_type: number
+
+      - name: units_type
+        description: "Units type for the item."
+        data_type: number
+
+      - name: vendor_name
+        description: "Vendor name associated with the item."
+        data_type: varchar
+
+      - name: weight
+        description: "Weight of the item."
+        data_type: integer

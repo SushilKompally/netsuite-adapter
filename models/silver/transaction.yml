@@ -1,0 +1,125 @@
+
+version: 2
+
+models:
+  - name: transaction
+    description: "NetSuite transaction header in the Silver layer, including key identifiers, amounts, dates, and audit metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for the transaction record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: posting_period_id
+        description: "Identifier for the posting/accounting period."
+        data_type: number
+        
+
+      - name: transaction_status_id
+        description: "Identifier for the transaction status."
+        data_type: varchar
+       
+
+      - name: employee_id
+        description: "Identifier for the employee associated with the transaction."
+        data_type: number
+      
+
+      - name: currency_id
+        description: "Identifier for the currency used in the transaction."
+        data_type: number
+
+      - name: internal_entity_id
+        description: "Identifier for the entity (customer/vendor) associated with the transaction."
+        data_type: number
+
+      - name: location_id
+        description: "Identifier for the location associated with the transaction."
+        data_type: number
+        
+
+      - name: partner_id
+        description: "Identifier for the partner associated with the transaction."
+        data_type: number
+      - name: payment_method_id
+        description: "Identifier for the partner associated with the transaction."
+        data_type: number
+      - name: source_transaction
+        description: "Identifier for the source transaction from which this transaction originated."
+        data_type: number
+      - name: transaction_session_vin
+        description: "Session VIN identifier for the transaction."
+        data_type: number
+      - name: billing_address_id
+        description: "Identifier for the billing address associated with the transaction."
+        data_type: varchar
+      - name: shipping_address_id
+        description: "Identifier for the shipping address associated with the transaction."
+        data_type: varchar
+      - name: session_shop_email
+        description: "Email address associated with the transaction session."
+        data_type: varchar
+      - name: memo
+        description: "Memo or description for the transaction."
+        data_type: varchar
+      - name: billing_status
+        description: "Billing status of the transaction."
+        data_type: varchar
+      - name: title
+        description: "Title or name of the transaction."
+        data_type: varchar
+      - name: tran_id
+        description: "Alternate transaction identifier."
+        data_type: varchar
+      - name: transaction_number
+        description: "Human-readable transaction number."
+        data_type: varchar
+      - name: transaction_session_ro
+        description: "Read-only session identifier for the transaction."
+        data_type: varchar
+      - name: source
+        description: "Source system or origin of the transaction."
+        data_type: varchar
+      - name: transaction_type
+        description: "Type of transaction (e.g., Sales Order, Invoice)."
+        data_type: varchar
+      - name: record_type
+        description: "Record type of the transaction in NetSuite."
+        data_type: varchar
+      - name: amount_unbilled
+        description: "Amount that remains unbilled for the transaction."
+        data_type: number
+      - name: exchange_rate
+        description: "Exchange rate applied to the transaction."
+        data_type: number
+      - name: close_date
+        description: "Date when the transaction was closed."
+        data_type: timestamp_ntz
+      - name: created_date
+        description: "Date when the transaction was created."
+        data_type: timestamp_ntz
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+        tests:
+          - not_null
+      - name: due_date
+        description: "Due date for the transaction."
+        data_type: timestamp_ntz
+      - name: end_date
+        description: "End date for the transaction."
+        data_type: timestamp_ntz
+      - name: start_date
+        description: "Start date for the transaction."
+        data_type: timestamp_ntz
+      - name: tran_date
+        description: "Transaction date."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

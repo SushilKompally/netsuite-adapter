@@ -1,0 +1,62 @@
+
+version: 2
+
+models:
+  - name: consolidated_exchange_rates
+    description: "NetSuite consolidated exchange rates in the Silver layer, including accounting book, posting period, subsidiaries, and currency mappings."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      # PRIMARY KEY
+      - name: consolidated_exchange_rate_id
+        description: "Unique identifier for the consolidated exchange rate record."
+        data_type: number
+        tests:
+          - not_null
+          # - unique
+
+      # FOREIGN KEYS
+      - name: accounting_book_id
+        description: "Identifier for the accounting book associated with this exchange rate."
+        data_type: number
+
+      - name: posting_period_id
+        description: "Identifier for the posting/accounting period."
+        data_type: number
+        
+
+      - name: from_subsidiary_id
+        description: "Subsidiary from which the currency conversion originates."
+        data_type: number
+
+      - name: to_subsidiary_id
+        description: "Subsidiary to which the currency conversion applies."
+        data_type: number
+
+      - name: from_currency_id
+        description: "Source currency identifier."
+        data_type: number
+
+      - name: to_currency_id
+        description: "Target currency identifier."
+        data_type: number
+
+      - name: average_rate
+        description: "Average exchange rate for the period."
+        data_type: number
+      - name: current_rate
+        description: "Current exchange rate at the effective date."
+        data_type: number
+      - name: historical_rate
+        description: "Historical exchange rate value."
+        data_type: number
+
+      - name: last_modified_date
+        description: "Timestamp when the record was last modified into the Silver layer."
+        data_type: timestamp_ntz
+
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

@@ -1,0 +1,64 @@
+
+version: 2
+
+models:
+  - name: accounts
+    description: "Dimension table for NetSuite accounts in the Silver layer, including account details, hierarchy, and metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: account_id
+        description: "Unique identifier for the account record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+
+      - name: class_id
+        description: "Identifier for the class associated with the account."
+        data_type: number
+      - name: currency_id
+        description: "Identifier for the currency linked to the account."
+        data_type: number
+      - name: department_id
+        description: "Identifier for the department associated with the account."
+        data_type: number
+      - name: location_id
+        description: "Identifier for the location associated with the account."
+        data_type: number
+      - name: parent_id
+        description: "Identifier for the parent account in the hierarchy."
+        data_type: number
+      - name: subsidiary_id
+        description: "Identifier for the subsidiary linked to the account."
+        data_type: number
+      - name: account_number
+        description: "Account number from the chart of accounts."
+        data_type: varchar
+      - name: account_description
+        description: "Description of the account."
+        data_type: varchar
+      - name: display_name
+        description: "Display name of the account."
+        data_type: varchar
+      - name: display_name_with_hierarchy
+        description: "Display name including hierarchy information."
+        data_type: varchar
+      - name: is_inactive
+        description: "Flag indicating whether the account is inactive."
+        data_type: boolean
+      - name: account_name
+        description: "Name of the account."
+        data_type: varchar
+      - name: account_type
+        description: "Type of the account (e.g., Asset, Liability, Income)."
+        data_type: varchar
+
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

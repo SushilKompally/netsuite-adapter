@@ -1,0 +1,46 @@
+version: 2
+models:
+  - name: dim_classification
+    description: "Incremental Dimension table for Classifications, sourced from the SCD2 snapshot. Contains the most current active records."
+    columns:
+      - name: class_surr_key
+        description: "Hashed surrogate key for the dimension record."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: class_id
+        description: "Business key / Natural key from the source system."
+        data_type: number
+
+      - name: class_full_name
+        description: "The full hierarchical path/name of the classification."
+        data_type: varchar
+
+      - name: is_inactive
+        description: "Indicates if the classification is currently marked as inactive."
+        data_type: boolean
+
+      - name: last_modified_date
+        description: "Source system last modified timestamp."
+        data_type: timestamp_ntz
+
+      - name: class_name
+        description: "The display name of the classification."
+        data_type: varchar
+
+      - name: parent
+        description: "The ID of the parent record in the classification hierarchy."
+        data_type: number
+
+      - name: silver_load_date
+        description: "Timestamp when the record was processed into the silver layer."
+        data_type: timestamp_ntz
+
+      - name: effective_from
+        description: "The start date of this specific record version (from dbt_valid_from)."
+        data_type: timestamp_ntz
+
+      - name: scd_id
+        description: "Unique identifier for the SCD record version."
+        data_type: varchar

@@ -1,0 +1,32 @@
+
+version: 2
+
+models:
+  - name: departments
+    description: "NetSuite departments (Silver layer)."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: department_id
+        description: "Primary key for the department record."
+        data_type: number
+        tests: [not_null, unique]
+      - name: parent
+        description: "Parent department identifier."
+        data_type: number
+      - name: department_full_name
+        description: "Full name of the department (cleaned)."
+        data_type: varchar
+      - name: is_inactive
+        description: "Indicates if the department is inactive."
+        data_type: boolean
+      - name: department_name
+        description: "Short name of the department (cleaned)."
+        data_type: varchar
+      - name: last_modified_date
+        description: "Timestamp of the last modification to the department."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the row was loaded into the Silver layer."
+        data_type: timestamp_ntz

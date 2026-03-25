@@ -1,0 +1,41 @@
+
+version: 2
+
+models:
+  - name: dim_accounting_period
+    description: "SCD Type 2 snapshot for accounting periods using timestamp strategy on last_modified_date."
+
+    columns:
+      - name: posting_period_id
+        description: "Unique identifier for the posting period in source."
+        data_type: varchar
+
+      - name: closed_on_date
+        description: "Date when the period was closed."
+        data_type: timestamp_ntz
+
+      - name: last_modified_date
+        description: "Source system last modified timestamp used as updated_at for SCD2."
+        data_type: timestamp_ntz
+
+
+      - name: end_date
+        description: "Period end date."
+        data_type: timestamp_ntz
+
+      - name: start_date
+        description: "Period start date."
+        data_type: timestamp_ntz
+
+      - name: period_name
+        description: "Display name for the posting period."
+        data_type: varchar
+
+      - name: year
+        description: "Fiscal/calendar year for the period."
+        data_type: text
+
+      - name: silver_load_date
+        description: "ETL pipeline load timestamp."
+        data_type: timestamp_ltz
+

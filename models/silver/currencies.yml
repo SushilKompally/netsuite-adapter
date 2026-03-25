@@ -1,0 +1,38 @@
+
+version: 2
+
+models:
+  - name: currencies
+    description: "Dimension table for NetSuite currencies in the Silver layer, including exchange rates, status, and metadata."
+    config:
+      contract:
+        enforced: true
+
+    columns:
+      - name: currency_id
+        description: "Unique identifier for the currency record."
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: currency_name
+        description: "Name of the currency (e.g., US Dollar, Euro)."
+        data_type: varchar
+      - name: display_symbol
+        description: "Symbol used to represent the currency (e.g., $, €)."
+        data_type: varchar
+      - name: exchange_rate
+        description: "Exchange rate for the currency relative to the base currency."
+        data_type: number
+      - name: is_inactive
+        description: "Flag indicating whether the currency is inactive."
+        data_type: boolean
+      - name: is_base_currency
+        description: "Flag indicating whether this currency is the base currency."
+        data_type: boolean
+      - name: last_modified_date
+        description: "Timestamp of the last modification in the source system."
+        data_type: timestamp_ntz
+      - name: silver_load_date
+        description: "Timestamp when the record was loaded into the Silver layer."
+        data_type: timestamp_ntz

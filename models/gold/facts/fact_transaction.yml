@@ -1,0 +1,171 @@
+
+version: 2
+
+models:
+  - name: fact_transaction  
+    description: "Consolidated transaction facts joined from lines, accounting lines, accounts, periods, status, and consolidated exchange rates."
+    config:
+      contract:
+        enforced: true
+
+
+    columns:
+      - name: TRANSACTIONS_UNIQUE_ID
+        description: "Surrogate key built from TRANSACTION_ID and TRANSACTION_LINE_ID."
+        data_type: varchar
+      - name: TRANSACTION_ID
+        description: "Transaction header identifier."
+        data_type: number
+      - name: TRAN_ID
+        description: "Alternate transaction identifier from header (if present)."
+        data_type: varchar
+      - name: TRANSACTION_LINE_ID
+        description: "Transaction line identifier."
+        data_type: number
+      - name: ACCOUNT_ID
+        description: "Account identifier linked to the accounting line."
+        data_type: number
+      - name: ITEM_ID
+        description: "Item identifier for the transaction line."
+        data_type: number
+      - name: CLASS_ID
+        description: "Class identifier for the transaction line."
+        data_type: number
+      - name: POSTING_PERIOD_ID
+        description: "Accounting posting period identifier."
+        data_type: number
+      - name: EMPLOYEE_ID
+        description: "Employee identifier related to the transaction."
+        data_type: number
+      - name: ENTITY_ID
+        description: "Entity (customer/vendor/etc.) identifier."
+        data_type: number
+      - name: BILLING_ADDRESS_ID
+        description: "Billing address identifier."
+        data_type: varchar
+      - name: SHIPPING_ADDRESS_ID
+        description: "Shipping address identifier."
+        data_type: varchar
+      - name: CURRENCY_ID
+        description: "Currency identifier for the transaction."
+        data_type: number
+      - name: SUBSIDIARY_ID
+        description: "Subsidiary identifier for the transaction line."
+        data_type: number
+      - name: LOCATION_ID
+        description: "Location identifier."
+        data_type: number
+      - name: TRANSACTION_STATUS_ID
+        description: "Transaction status identifier."
+        data_type: varchar
+      - name: DEPARTMENT_ID
+        description: "Department identifier for the transaction line."
+        data_type: number
+      - name: ACCOUNTING_BOOK_ID
+        description: "Accounting book identifier, typically resolved via consolidated exchange rate."
+        data_type: number
+
+      - name: ACCOUNT_NUMBER
+        description: "Account number from chart of accounts."
+        data_type: varchar
+      - name: ACCOUNT_TYPE
+        description: "Account type from chart of accounts."
+        data_type: varchar
+      - name: ACCOUNT_NAME
+        description: "Account name from chart of accounts."
+        data_type: varchar
+      - name: TRANSACTION_TYPE
+        description: "NetSuite transaction type."
+        data_type: varchar
+      - name: TRANSACTION_NUMBER
+        description: "Human-readable transaction number."
+        data_type: varchar
+      - name: TITLE
+        description: "Transaction title (if present)."
+        data_type: varchar
+      - name: TRANSACTION_LINE_TYPE
+        description: "Type of transaction line."
+        data_type: varchar
+      - name: ITEM_TYPE
+        description: "Type of item (if line is item-linked)."
+        data_type: varchar
+      - name: ACCOUNTING_LINE_TYPE
+        description: "Accounting line type."
+        data_type: varchar
+      - name: QUANTITY
+        description: "Quantity on the transaction line."
+        data_type: number
+      - name: MEMO
+        description: "Transaction memo/description."
+        data_type: varchar
+      - name: BILLING_STATUS
+        description: "Billing status."
+        data_type: varchar
+      - name: TRANSACTION_SESSION_RO
+        description: "Transaction session or run identifier (read-only)."
+        data_type: varchar
+      - name: TRANSACTION_ACCOUNTING_POSTING_FLAG
+        description: "Flag indicating if the accounting line is posted."
+        data_type: boolean
+
+      - name: NET_AMOUNT
+        description: "Net amount from accounting line."
+        data_type: number
+
+      - name: AMOUNT
+        description: "Amount from accounting line."
+        data_type: number
+
+      - name: amount_un_paid
+        description: "Amount Un-paid from accounting line."
+        data_type: number
+
+      - name: amount_paid
+        description: "Amount paid from accounting line."
+        data_type: number
+
+      - name: CONVERTED_NET_AMOUNT
+        description: "Net amount converted using transaction exchange rate."
+        data_type: number
+
+      - name: BOM_QUANTITY
+        description: "Derived quantity (NET_AMOUNT * QUANTITY)."
+        data_type: number
+
+      - name: CHART_OF_ACCOUNTS_UNIQUE_ID
+        description: "Surrogate key derived from ACCOUNT_ID + CLASS_ID."
+        data_type: varchar
+      - name: CONSOLIDATED_EXCHANGE_RATE_UNIQUE_ID
+        description: "Surrogate key derived from SUBSIDIARY_ID + POSTING_PERIOD_ID + CURRENCY_ID."
+        data_type: varchar
+
+      - name: TRAN_DATE
+        description: "Transaction date."
+        data_type: timestamp_ntz
+      - name: START_DATE
+        description: "Start date (for transactions that span a range)."
+        data_type: timestamp_ntz
+      - name: END_DATE
+        description: "End date (for transactions that span a range)."
+        data_type: timestamp_ntz
+      - name: DUE_DATE
+        description: "Due date of the transaction."
+        data_type: timestamp_ntz
+      - name: CLOSE_DATE
+        description: "Close date of the transaction."
+        data_type: timestamp_ntz
+      - name: POSTING_PERIOD_DATE
+        description: "Resolved start date for the posting period."
+        data_type: date
+
+      - name: TRANSACTION_STATUS_NAME
+        description: "Human-readable transaction status."
+        data_type: varchar
+
+      - name: RECORD_TYPE
+        description: "Record type from source transaction header."
+        data_type: varchar
+      - name: LAST_MODIFIED_DATE
+        description: "Timestamp of last modification on the source transaction header."
+        data_type: timestamp_ntz
+       
