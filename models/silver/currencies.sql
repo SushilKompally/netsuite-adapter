@@ -8,7 +8,7 @@
 --     Silver layer for the currencies table in the NetSuite data pipeline.
 -- Data source version: v62.0
 -- Change History:
---     23-dec-2025 - Initial creation - Sushil Kompally
+--     23-dec-2025 - Initial creation - Sushil Kompall
 #}
 with
     raw as (
